@@ -2,17 +2,22 @@ package com.Anmol.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class DemoApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(DemoApplication.class, args);
+		ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
+		Student student = context.getBean(Student.class);
 
-		Student student = new Student(24,"Anmol");
-		System.out.println(student.getAge());
+		//USING BEAN
+		student.setAge((24));
+		student.setName("Anmol");
+
 		System.out.println(student.getName());
+		System.out.println(student.getAge());
 	}
 
 }
