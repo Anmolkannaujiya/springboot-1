@@ -19,18 +19,18 @@ public class MyPortfolio {
                 """;
     }
 
-//    @GetMapping("/skills")
-//    public String skills(){
-//        return """
-//                <h1>Skills On Display</h1>
-//                <p>I am a Skilled programmer </p>
-//                <ul>
-//                <li>Java</li>
-//                <li>CPP</li>
-//                <li>Python</li>
-//                </ul>
-//                """;
-//    }
+    @GetMapping("/skills")
+    public String skills(){
+        return """
+                <h1>Skills On Display</h1>
+                <p>I am a Skilled programmer </p>
+                <ul>
+                <li>Java</li>
+                <li>CPP</li>
+                <li>Python</li>
+                </ul>
+                """;
+    }
 
 
 }
