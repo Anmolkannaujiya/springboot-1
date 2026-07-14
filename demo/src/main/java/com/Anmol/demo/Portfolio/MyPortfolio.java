@@ -44,4 +44,17 @@ public class MyPortfolio {
                 """;
     }
 
+    @GetMapping("/project")
+    public String project(){
+        return """
+                <h1>Multiple to show</h1>
+                <p>Java Stack compiled </p>
+                <ul>
+                <li>Future Predictor</li>
+                <li>Past Analyzer</li>
+                <li>Present Planner</li>
+                </ul>
+                """;
+    }
+
 }
