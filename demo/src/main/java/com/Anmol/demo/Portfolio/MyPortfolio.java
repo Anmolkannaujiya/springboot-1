@@ -31,6 +31,17 @@ public class MyPortfolio {
                 </ul>
                 """;
     }
-
+    @GetMapping("/education")
+    public String education(){
+        return """
+                <h1>Highly Educated</h1>
+                <p>I am a Skilled programmer </p>
+                <ul>
+                <li>12th pass</li>
+                <li>10th pass</li>
+                <li>BA pass</li>
+                </ul>
+                """;
+    }
 
 }
