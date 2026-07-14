@@ -10,7 +10,7 @@ public class OrderService {
     @Autowired
     PaymentService paymentService;
 
-    //if only one constructor than wtiting autowired is not mandatory
+    //if only one constructor than writing autowired is not mandatory
     //if multiple then i have to tell spring that wiring is done with the help of which constructor
 
     OrderService(PaymentService paymentService){
