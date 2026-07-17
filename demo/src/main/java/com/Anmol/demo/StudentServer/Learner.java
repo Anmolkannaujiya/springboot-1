@@ -6,18 +6,19 @@ import jakarta.persistence.Id;
 @Entity
 public class Learner {
     @Id
-    private Long id1;
     int id;
     String name;
     int age;
     String department;
 
-    public Long getId1() {
-        return id1;
+    public Learner() {
     }
 
-    public void setId1(Long id1) {
-        this.id1 = id1;
+    public Learner(int id, String name, int age, String department) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.department = department;
     }
 
     public int getId() {
