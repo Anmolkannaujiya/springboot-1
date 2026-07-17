@@ -1,4 +1,4 @@
-package com.Anmol.demo.StudentServer;
+package com.Anmol.demo.StudentServer.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

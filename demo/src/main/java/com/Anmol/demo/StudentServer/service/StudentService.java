@@ -1,6 +1,9 @@
-package com.Anmol.demo.StudentServer;
+package com.Anmol.demo.StudentServer.service;
 
-import org.springframework.boot.webmvc.error.DefaultErrorAttributes;
+import com.Anmol.demo.StudentServer.entity.Learner;
+import com.Anmol.demo.StudentServer.repository.StudentRepository;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +28,11 @@ public class StudentService {
 
         studentRepository.save(learner);
         return learner;
+
+    }
+
+    public Learner getStudentById(int id){
+        return studentRepository.findById(id).orElse(null);
     }
 }
+

@@ -1,12 +1,10 @@
-package com.Anmol.demo.StudentServer;
+package com.Anmol.demo.StudentServer.controller;
 
+import com.Anmol.demo.StudentServer.service.StudentService;
+import com.Anmol.demo.StudentServer.entity.Learner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class StudentController {
@@ -32,11 +30,19 @@ public class StudentController {
        return ResponseEntity.status(201).body(result);
     }
 
-    @GetMapping("/test")
-    public String test() {
-        System.out.println("Test endpoint called");
-        return "Working";
+//    @GetMapping("/test")
+//    public String test() {
+//        System.out.println("Test endpoint called");
+//        return "Working";
+//    }
+
+    @GetMapping("get/{id}")
+    public ResponseEntity<?> getStudentById(@PathVariable int id) {
+        Learner learner = studentService.getStudentById(id);
+        return ResponseEntity.status(200).body(learner);
     }
+
+
 
 
 }
