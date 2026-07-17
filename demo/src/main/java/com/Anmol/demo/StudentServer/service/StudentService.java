@@ -47,5 +47,20 @@ public class StudentService {
 
         return studentRepository.save(checkLearner);
     }
+
+    public boolean deleteStudentById(int id) {
+
+        Learner learner = studentRepository.findById(id).orElse(null);
+
+        if (learner == null) {
+            return false;
+        }
+
+        studentRepository.delete(learner);
+        // OR
+        //  studentRepository.deleteById(id);
+
+        return true;
+    }
 }
 
