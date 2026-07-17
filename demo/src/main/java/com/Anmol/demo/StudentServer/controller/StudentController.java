@@ -42,7 +42,17 @@ public class StudentController {
         return ResponseEntity.status(200).body(learner);
     }
 
+    @PutMapping("/put/{id}")
+    public ResponseEntity<?> putStudentById(@PathVariable int id,
+                                            @RequestBody Learner learner){
 
+            Learner putResult = studentService.putStudentById(id, learner);
+
+            if(putResult == null){
+                return ResponseEntity.status(400).body(putResult);
+            }
+            return ResponseEntity.status(201).body(putResult);
+    }
 
 
 }

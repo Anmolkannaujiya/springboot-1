@@ -34,5 +34,18 @@ public class StudentService {
     public Learner getStudentById(int id){
         return studentRepository.findById(id).orElse(null);
     }
+
+    public Learner putStudentById(int id, Learner learner){
+        Learner checkLearner = studentRepository.findById(id).orElse((null));
+
+        if(checkLearner == null){
+            return null;
+        }
+        checkLearner.setName(learner.getName());
+        checkLearner.setAge(learner.getAge());
+        checkLearner.setDepartment(learner.getDepartment());
+
+        return studentRepository.save(checkLearner);
+    }
 }
 
