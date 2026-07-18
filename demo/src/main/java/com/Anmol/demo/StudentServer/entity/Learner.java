@@ -1,24 +1,52 @@
 package com.Anmol.demo.StudentServer.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Learner {
     @Id
-    int id;
-    String name;
-    int age;
-    String department;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    private int age;
+    private String department;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    public Learner() {
+   //note instead of annotation we can also use getter and setter of created and updated
+    //we need to call getcreatedAt() function from the student service file, 2 methods
+
+
+//    public Learner() {
+//    }
+//
+//    public Learner(int id, String name, int age, String department) {
+//        this.id = id;
+//        this.name = name;
+//        this.age = age;
+//        this.department = department;
+//    }
+
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public Learner(int id, String name, int age, String department) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.department = department;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {

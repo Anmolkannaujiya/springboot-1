@@ -6,6 +6,8 @@ import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class StudentService {
 
@@ -25,6 +27,9 @@ public class StudentService {
         if(id < 0 || name == null || age < 0 || department == null){
             return null;
         }
+
+        learner.setCreatedAt(LocalDateTime.now());
+        learner.setUpdatedAt(LocalDateTime.now());
 
         studentRepository.save(learner);
         return learner;
@@ -55,6 +60,7 @@ public class StudentService {
         if (learner == null) {
             return false;
         }
+
 
         studentRepository.delete(learner);
         // OR
