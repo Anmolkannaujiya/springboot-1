@@ -5,6 +5,7 @@ import com.Anmol.demo.StudentServer.DTO.CreateStudentResponseDTO;
 import com.Anmol.demo.StudentServer.DTO.CreateStudentUpdateRequestDTO;
 import com.Anmol.demo.StudentServer.service.StudentService;
 import com.Anmol.demo.StudentServer.entity.Learner;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> storeStudent(@RequestBody CreateStudentRequestDTO createStudentRequestDTO){
+    public ResponseEntity<?> storeStudent(@Valid @RequestBody CreateStudentRequestDTO createStudentRequestDTO){
        CreateStudentResponseDTO result = studentService.studentValidate(createStudentRequestDTO);
 
         System.out.println("Controller called");
@@ -48,7 +49,7 @@ public class StudentController {
 
     @PutMapping("/put/{id}")
     public ResponseEntity<?> putStudentById(@PathVariable int id,
-                                            @RequestBody CreateStudentUpdateRequestDTO createStudentUpdateRequestDTO){
+                                            @Valid @RequestBody CreateStudentUpdateRequestDTO createStudentUpdateRequestDTO){
 
             CreateStudentResponseDTO putResult = studentService.putStudentById(id, createStudentUpdateRequestDTO);
 
