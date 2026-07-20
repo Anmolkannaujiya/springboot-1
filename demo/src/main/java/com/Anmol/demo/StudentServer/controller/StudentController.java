@@ -2,6 +2,7 @@ package com.Anmol.demo.StudentServer.controller;
 
 import com.Anmol.demo.StudentServer.DTO.CreateStudentRequestDTO;
 import com.Anmol.demo.StudentServer.DTO.CreateStudentResponseDTO;
+import com.Anmol.demo.StudentServer.DTO.CreateStudentUpdateRequestDTO;
 import com.Anmol.demo.StudentServer.service.StudentService;
 import com.Anmol.demo.StudentServer.entity.Learner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,9 @@ public class StudentController {
 
     @PutMapping("/put/{id}")
     public ResponseEntity<?> putStudentById(@PathVariable int id,
-                                            @RequestBody Learner learner){
+                                            @RequestBody CreateStudentUpdateRequestDTO createStudentUpdateRequestDTO){
 
-            Learner putResult = studentService.putStudentById(id, learner);
+            CreateStudentResponseDTO putResult = studentService.putStudentById(id, createStudentUpdateRequestDTO);
 
             if(putResult == null){
                 return ResponseEntity.status(400).body(putResult);

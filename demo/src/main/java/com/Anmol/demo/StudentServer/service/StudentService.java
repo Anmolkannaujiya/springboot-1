@@ -2,6 +2,7 @@ package com.Anmol.demo.StudentServer.service;
 
 import com.Anmol.demo.StudentServer.DTO.CreateStudentRequestDTO;
 import com.Anmol.demo.StudentServer.DTO.CreateStudentResponseDTO;
+import com.Anmol.demo.StudentServer.DTO.CreateStudentUpdateRequestDTO;
 import com.Anmol.demo.StudentServer.entity.Learner;
 import com.Anmol.demo.StudentServer.repository.StudentRepository;
 import org.apache.coyote.Response;
@@ -58,17 +59,21 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
-    public Learner putStudentById(int id, Learner learner){
+    public CreateStudentResponseDTO putStudentById(int id, CreateStudentUpdateRequestDTO createStudentUpdateRequestDTO){
         Learner checkLearner = studentRepository.findById(id).orElse((null));
 
         if(checkLearner == null){
             return null;
         }
-        checkLearner.setName(learner.getName());
-        checkLearner.setAge(learner.getAge());
-        checkLearner.setDepartment(learner.getDepartment());
+        checkLearner.setName(createStudentUpdateRequestDTO.getName());
+        checkLearner.setAge(createStudentUpdateRequestDTO.getAge());
+        checkLearner.setUpdatedAt(LocalDateTime.now());
 
-        return studentRepository.save(checkLearner);
+        //cannot change department
+        //checkLearner.setDepartment(learner.getDepartment());
+
+        studentRepository.save(checkLearner);
+        return mapToResponseDTO(checkLearner);
     }
 
     public boolean deleteStudentById(int id) {
