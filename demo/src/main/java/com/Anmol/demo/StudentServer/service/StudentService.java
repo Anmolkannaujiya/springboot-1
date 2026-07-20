@@ -1,10 +1,14 @@
 package com.Anmol.demo.StudentServer.service;
 
+import com.Anmol.demo.StudentServer.DTO.CreateStudentRequestDTO;
+import com.Anmol.demo.StudentServer.DTO.CreateStudentResponseDTO;
 import com.Anmol.demo.StudentServer.entity.Learner;
 import com.Anmol.demo.StudentServer.repository.StudentRepository;
 import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import tools.jackson.databind.cfg.MapperBuilder;
 
 import java.time.LocalDateTime;
 
@@ -12,27 +16,41 @@ import java.time.LocalDateTime;
 public class StudentService {
 
 
+
     StudentRepository studentRepository;
 
+    @Autowired
     public StudentService(StudentRepository studentRepository){
         this.studentRepository = studentRepository;
+
     }
 
-    public Learner studentValidate(Learner learner){
-        int id = learner.getId();
-        String name = learner.getName();
-        int age = learner.getAge();
-        String department = learner.getDepartment();
+    public CreateStudentResponseDTO studentValidate(CreateStudentRequestDTO createStudentRequestDTO){
 
-        if(id < 0 || name == null || age < 0 || department == null){
-            return null;
-        }
-
-        learner.setCreatedAt(LocalDateTime.now());
-        learner.setUpdatedAt(LocalDateTime.now());
-
+        Learner learner = mapToStudent(createStudentRequestDTO);
         studentRepository.save(learner);
-        return learner;
+        return mapToResponseDTO(learner);
+
+        //we have to filter response
+       // return studentRepository.save(learner);
+
+
+
+        //before DTO
+//        int id = learner.getId();
+//        String name = learner.getName();
+//        int age = learner.getAge();
+//        String department = learner.getDepartment();
+//
+//        if(id < 0 || name == null || age < 0 || department == null){
+//            return null;
+//        }
+//
+//        learner.setCreatedAt(LocalDateTime.now());
+//        learner.setUpdatedAt(LocalDateTime.now());
+//
+//        studentRepository.save(learner);
+//        return learner;
 
     }
 
@@ -68,5 +86,31 @@ public class StudentService {
 
         return true;
     }
+
+    private Learner mapToStudent(CreateStudentRequestDTO createStudentRequestDTO){
+        Learner learner = new Learner();
+
+        learner.setName(createStudentRequestDTO.getName());
+        learner.setAge(createStudentRequestDTO.getAge());
+        learner.setDepartment(createStudentRequestDTO.getDepartment());
+        learner.setCreatedAt(LocalDateTime.now());
+        learner.setUpdatedAt(LocalDateTime.now());
+
+        return learner;
+
+    }
+
+    private CreateStudentResponseDTO mapToResponseDTO(Learner learner){
+        CreateStudentResponseDTO createStudentResponseDTO = new CreateStudentResponseDTO();
+        createStudentResponseDTO.setId(learner.getId());
+        createStudentResponseDTO.setName(learner.getName());
+        createStudentResponseDTO.setAge(learner.getAge());
+        createStudentResponseDTO.setDepartment((learner.getDepartment()));
+
+        return createStudentResponseDTO;
+    }
+
+
+
 }
 

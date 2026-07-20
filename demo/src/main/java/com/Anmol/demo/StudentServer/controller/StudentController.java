@@ -1,5 +1,7 @@
 package com.Anmol.demo.StudentServer.controller;
 
+import com.Anmol.demo.StudentServer.DTO.CreateStudentRequestDTO;
+import com.Anmol.demo.StudentServer.DTO.CreateStudentResponseDTO;
 import com.Anmol.demo.StudentServer.service.StudentService;
 import com.Anmol.demo.StudentServer.entity.Learner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,11 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Learner> storeStudent(@RequestBody Learner learner){
-       Learner result = studentService.studentValidate(learner);
+    public ResponseEntity<?> storeStudent(@RequestBody CreateStudentRequestDTO createStudentRequestDTO){
+       CreateStudentResponseDTO result = studentService.studentValidate(createStudentRequestDTO);
 
         System.out.println("Controller called");
-        System.out.println(learner.getName());
+        System.out.println(createStudentRequestDTO.getName());
 
        if(result == null){
             return ResponseEntity.status(400).body(result);
