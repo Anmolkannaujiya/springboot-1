@@ -13,11 +13,7 @@ public class ExceptionResponseDTO {
     private int statusCode;
     private String error;
     private String path;
-
-
-
-    public ExceptionResponseDTO(LocalDateTime now, int value, String reasonPhrase, String message, String requestURI) {
-    }
+    private String message;
 
 
     //this is parameterised constructor, can use ALLArgsConstructor to get it
@@ -26,4 +22,6 @@ public class ExceptionResponseDTO {
 //        this.error = error;
 //        this.statusCode = statusCode;
 //    }
+
+
 }
