@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import tools.jackson.databind.cfg.MapperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -56,7 +57,10 @@ public class StudentService {
     }
 
     public Learner getStudentById(int id) throws Exception{
-        return studentRepository.findById(id).orElse(null);
+        Optional<Learner> learner = studentRepository.findById(id);
+        //return studentRepository.findById(id).orElse(null);
+
+        return learner.get();
     }
 
     public CreateStudentResponseDTO putStudentById(int id, CreateStudentUpdateRequestDTO createStudentUpdateRequestDTO){
