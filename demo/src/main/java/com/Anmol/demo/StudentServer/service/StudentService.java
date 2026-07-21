@@ -55,7 +55,7 @@ public class StudentService {
 
     }
 
-    public Learner getStudentById(int id){
+    public Learner getStudentById(int id) throws Exception{
         return studentRepository.findById(id).orElse(null);
     }
 

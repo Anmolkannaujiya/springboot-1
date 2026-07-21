@@ -42,7 +42,7 @@ public class StudentController {
 //    }
 
     @GetMapping("get/{id}")
-    public ResponseEntity<?> getStudentById(@PathVariable int id) {
+    public ResponseEntity<?> getStudentById(@PathVariable int id) throws Exception{
         Learner learner = studentService.getStudentById(id);
         return ResponseEntity.status(200).body(learner);
     }
